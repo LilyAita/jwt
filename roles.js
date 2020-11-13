@@ -6,7 +6,7 @@ exports.roles = (function () {
 
   ac.grant("cliente").extend("visitante").createAny("products");
 
-  ac.grant("admin").extend("cliente").updateAny("products").readAny("auth");
+  ac.grant("admin").extend("cliente").readAny("auth");
 
   return ac;
 })();

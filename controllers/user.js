@@ -44,5 +44,17 @@ async function createUser(user) {
   });
 }
 
+async function getUsers() {
+  return mongoUtils.conn().then(async (client) => {
+    const usuarios = await client
+      .db(dataBase)
+      .collection(COLLECTION_NAME)
+      .find({})
+      .toArray()
+      .finally(() => client.close());
 
-module.exports = [createUser, login ];
+    return usuarios;
+  });
+}
+
+module.exports = [createUser, login, getUsers];
